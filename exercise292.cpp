@@ -1,33 +1,31 @@
 #include <iostream>
-using namespace std;
 
-int main(int argc, char **argv) {
-	//char
-	char c = 'c';
+int main( int argc, char **argv )
+{
+    int n = 0;
 
-	//pointer to a char
-	char * p1 = new char;
+    std::cout << "Enter a side value for the square grid: ";
+    std::cin >> n;
 
-	//a constant pointer to a char
-	char * const p2 = p1;
+    int **array = new int *[n]; 
 
-	//a pointer to a constant char
-	const char * p3 = p1;
+    for(int i=0; i<n; ++i )
+        array[i] = new int[n];
 
-	//a constant pointer to a constant char
-	const char * const p4 = p2;
+    for(int i=0; i<n; ++i )
+        for(int j=0; j<n; ++j )
+            array[i][j] = i*n+j+1;
 
-	//a reference to a char
-	char & r1 = *p2;
+    for(int i=0; i<n; ++i ) {
+    	for(int j=0; j<n; ++j ) {
+    		std::cout << array[i][j] << "\t";
+    	}
+    	std::cout << std::endl;
+    }
+        
+            
 
-	//a refernce to a constant char
-	const char & r2 = * p4;
-
-// To have no warning at compilation for unused variables
-	if( *p3 == r1 ) { 
-	}
-	if( *p3 == r2 ) { 
-	}
-
-	return 0;
+    for(int i=0; i<n; ++i )
+        delete [] array[i];
+    delete [] array;
 }
